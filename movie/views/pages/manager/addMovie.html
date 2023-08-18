@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加电影</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            $("#editTime_btn").click(function (){
+                alert("添加成功！")
+            })
+
+            $(".edit_btn11").change(function (){
+                //获取用户输入的用户名
+                var name = $(this).val();//this是文本框，dom对象
+                //设置请求地址
+                var url = "/checkMovieExist";
+                //设置请求参数
+                var param = {"movieName":name};
+                //发送Ajax请求
+                $.post(url,param,function(res){
+                    //将显示提示信息的span元素显示
+                    $("#msg1").show();
+                    //将响应信息设置到span元素中
+                    $("#msg1").html(res);
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <span id="head">
+            <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+            <div id="manageHead">
+                <table id="manageTab" >
+                    <tr>
+                        <td id="now">电影管理</td>
+                        <td >
+                            <td >
+                            <a href="/manageTime" >场次管理</a>&nbsp;&nbsp;
+                        </td>
+                        </td>
+                        <td >
+                            <a href="/manageRoom" >影厅管理</a>&nbsp;&nbsp;
+                        </td>
+                         <td>
+                            <a href="/cinemaLogout" >退出管理</a>&nbsp;&nbsp;
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+             <div id="manageTitle"><br>{{.}}后台管理</div>
+        </span>
+
+    <div id="editTime1" style="border: lightgrey solid">
+        <br>
+        <div style="font-size: 25px;margin-left: 20px"><a href="/manage">< 返回</a></div>
+        <div id="msg1">
+            <span></span>
+        </div>
+        <br>
+        <div>
+            <form action="/addMovie" method="POST">
+                <div>
+                    <div>
+                        <span class="editTab">影片名</span>
+                        <span class="editTab">导演</span>
+                        <span class="editTab">类型</span>
+                        <span class="editTab">时长(分钟)</span>
+                        <span class="editTab">上映时间</span>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="hidden" name="movieId" value="">	<!--隐藏域-->
+                        <input name="name" type="text" value="" class="edit_btn11"/>
+                        <input name="director" type="text" value="" class="edit_btn21"/>
+                        <input name="type" type="text" value="" class="edit_btn31"/>
+                        <input name="time" type="text" value="" class="edit_btn41"/>
+                        <input name="online" type="datetime-local" value="" class="edit_btn51"/>
+                    </div>
+                    <br>
+                    <div>
+                        <span class="editTab">语言版本</span>
+                        <span class="editTab">发行地</span>
+                        <span class="editTab">图片路径</span>
+                    </div>
+                    <div>
+                        <input name="version" type="text" value="" class="edit_btn1"/>
+                        <input name="where" type="text" value="" class="edit_btn2"/>
+                        <input name="imgPath" type="text" value="" class="edit_btn1"/>
+                    </div>
+                    <br><br>
+                    <div>
+                        <span id="editTab1">简介：</span>
+                        <textarea  rows="15" cols="70" id="introduce" name="introduce"></textarea>
+                    </div>
+
+                    <br><br>
+                    <input type="submit" value="提   交" id="addMovie_btn"/>
+                    <br><br>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

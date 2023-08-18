@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择场次</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                          <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                              <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                    <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <br><br><br>
+
+    <div id="selectDate">
+        <a href="/selectTime?movieId=1&cinemaId=1&date=0" class="date"><div  id="date0"></div></a>
+        <a href="/selectTime?movieId=1&cinemaId=1&date=1" class="date"><div  id="date1"></div></a>
+        <a href="/selectTime?movieId=1&cinemaId=1&date=2" class="date"><div  id="date2"></div></a>
+        <script>
+            var show= function() {
+                var date = new Date()
+                var d0 = date.getDate();
+                var d1=d0+1;
+                var d2=d1+1;
+                var m = date.getMonth() + 1;<!--月，这里的月份必须要+1才是当前月份-->
+                document.getElementById("date0").innerHTML = m+"月"+d0+"日";
+                document.getElementById("date1").innerHTML = m+"月"+d1+"日";
+                document.getElementById("date2").innerHTML = m+"月"+d2+"日";
+            }
+            show()
+            // setInterval("show()",1000)
+        </script>
+    </div>
+
+
+
+    <div id="timeList">
+        <hr color="lightgrey">
+        <div id="listTitle" class="listHeight">
+            <div class="tabCon"><b>放映时间</b></div>
+            <div class="tabCon"><b>语言版本</b></div>
+            <div class="tabCon"><b>放映厅</b></div>
+            <div class="tabCon"><b>售价</b></div>
+            <div class="tabCon"><b>选座购票</b></div>
+        </div>
+        <hr color="lightgrey">
+        {{range .TimeInfo}}
+            <div class="listHeight">
+                <div class="time">
+                    <div class="startTime"><b>{{.StartTime}}</b></div>
+                    <div class="endTime">{{.EndTime}}散场</div>
+                </div>
+                <div class="tabCon">{{.Version}}</div>
+                <div class="tabCon">{{.RoomName}}</div>
+                <div class="price" ><b>￥{{.Price}}元</b></div>
+                <div class="btn">
+                    <a href="/selectSeat?roomName={{.RoomName}}&timeId={{.TimeID}}"><input type="submit" name="buyTicket" value="购      票" class="selectSeat_btn"></a>
+                </div>
+            </div>
+            <hr color="lightgrey">
+        {{else}}
+            <div style="margin-top: 100px;font-size: 30px">暂无排片</div>
+        {{end}}
+<!--        <div class="listHeight">-->
+<!--            <div class="time">-->
+<!--                <div class="startTime"><b>10:30</b></div>-->
+<!--                <div class="endTime">12:00散场</div>-->
+<!--            </div>-->
+<!--            <div class="tabCon">国语2D</div>-->
+<!--            <div class="tabCon">1号激光厅</div>-->
+<!--            <div class="price" ><b>￥30.0元</b></div>-->
+<!--            <div class="btn">-->
+<!--                <a href="/selectSeat?roomId=1&timeId=0"><input type="submit" name="buyTicket" value="购      票" class="selectSeat_btn"></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr color="lightgrey">-->
+<!--        <div class="listHeight">-->
+<!--            <div class="time">-->
+<!--                <div class="startTime"><b>10:30</b></div>-->
+<!--                <div class="endTime">12:00散场</div>-->
+<!--            </div>-->
+<!--            <div class="tabCon">国语2D</div>-->
+<!--            <div class="tabCon">1号激光厅</div>-->
+<!--            <div class="price" ><b>￥30.0元</b></div>-->
+<!--            <div class="btn">-->
+<!--                <a href="/selectSeat?roomId=1&timeId=0"><input type="submit" name="buyTicket" value="购      票" class="selectSeat_btn"></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr color="lightgrey">-->
+    </div>
+
+    <br><br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

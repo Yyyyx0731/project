@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择座位</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+
+    <script>
+        var s ="";
+        // var s0 = "";
+        // var rows = 0;
+        // var columns = 0;
+        // var data=11;
+       // $(function (){
+       //
+       //     //拿到该影厅行列数和座位状态 seats
+       //     var roomName = $("#room").text()
+       //     // alert(roomName)
+       //     //设置请求的url
+       //     var url = "/getSeatsInfo";
+       //     //设置请求参数
+       //     var params = {"roomName":roomName};
+       //     $.ajaxSettings.async = false;
+       //     //发送Ajax请求
+       //     $.post(url,params,function(res){
+       //         //读json数据
+       //          rows = res["Rows"]
+       //          // console.log(res)
+       //         columns = res["Columns"]
+       //         // alert(rows)
+       //         // alert(columns)
+       //
+       //     },"json");
+       //     $.ajaxSettings.async = true;
+       //  // alert(rows)
+       //
+       //     var status= new Array(rows)
+       //     for (var i = 0; i < status.length; i++) {
+       //         status[i] = new Array(columns)
+       //     }
+       //     // alert(rows)
+       //     $(function (){
+       //         //拿到该影厅行列数和座位状态 seats
+       //         var roomName = $("#room").text()
+       //         //设置请求的url
+       //         var url = "/getSeatsStatus";
+       //         //设置请求参数
+       //         var params = {"roomName":roomName};
+       //         $.ajaxSettings.async = false;
+       //         //发送Ajax请求
+       //         $.post(url,params,function(res1){
+       //             //读json数据
+       //             // alert(res1[1].Status)
+       //             var cnt=0;
+       //             for (var i=0;i<rows;i++){
+       //                 for(var j=0;j<columns;j++,cnt++){
+       //                     status[i][j]=res1[cnt].Status
+       //                 }
+       //             }
+       //             // alert(status[2][2])
+       //             date = status;
+       //         },"json");
+       //         $.ajaxSettings.async = true;
+       //
+       //     });
+       // });
+
+
+
+
+            // var seatmap=[[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,1,1,0,0,0,0],[0,0,0,0,0,0,0,0],];
+            // window.onload = function(){
+            //     // var str=""
+            //     var roomNode = document.getElementById("seat");
+            //     for(var i=0;i<4;i++){
+            //         var divNode = document.createElement('div');
+            //         divNode.id="row"+i;
+            //         roomNode.appendChild(divNode);
+            //         for(var j=0;j<8;j++){
+            //             addSeatImg(i,j);
+            //         }
+            //     }
+            //
+            // }
+            // function pick_seat(i,j){
+            //     var imgObj = document.getElementById("img"+i+"_"+j);
+            //     if (seatmap[i][j]==1) {	//如果座位已售，则不可选
+            //         return 0;
+            //     }else if (seatmap[i][j]==0){
+            //         imgObj.src="/static/img/绿.gif";
+            //         seatmap[i][j]=2;
+            //         var row = i+1;
+            //         var col = j +1;
+            //         var str = row+","+col
+            //         // alert(str)
+            //         s = s+"add#"+str+"-";
+            //         // s0 = str;
+            //     }else{// 2 已选
+            //         seatmap[i][j]=0
+            //         imgObj.src="/static/img/白.gif";
+            //         var row = i+1;
+            //         var col = j +1;
+            //         var str = row+","+col
+            //         // alert(str)
+            //         s = s+"del#"+str+"-";
+            //         // s0 = str;
+            //     }
+            //
+            // }
+            // function addSeatImg(i,j){
+            //     var imgNode = document.createElement("img");//创建一个图片
+            //     if( seatmap[i][j]==1)	//初始化时只有空座和已售两种情况
+            //         imgNode.src = "/static/img/红.gif";//设置图片节点的src属性
+            //     else
+            //         imgNode.src = "/static/img/白.gif";
+            //     imgNode.id="img"+i+"_"+j;
+            //     imgNode.style.margin = 'auto 4px';  //设置座位横向间隔
+            //     imgNode.title = (i+1)+"排"+(j+1)+"列";//设置图片节点的title属性
+            //     imgNode.setAttribute("onclick","pick_seat("+i+","+j+")");
+            //     var divNode = document.getElementById("row"+i);
+            //     divNode.appendChild(imgNode);//追加图片节点到div层中
+            // }
+
+        // // 全局标志变量
+        // var hasSubmitted = false;
+        // function sub(){
+        //     // alert(s)
+        //     // $("#pay_btn").click(function(){
+        //         // alert(s)
+        //         //设置请求地址
+        //         // var url = "/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}";
+        //         // //设置请求参数
+        //         // var param = {"s":s};
+        //         // if(param.s === ""){
+        //         //     return
+        //         // }else {
+        //         //     //发送Ajax请求
+        //         //     $.post(url,param,function(res){
+        //         //
+        //         //     });
+        //         // }
+        //         if (!hasSubmitted) {
+        //             $.ajax({
+        //                 url: "/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}",
+        //                 data: {s: s},
+        //                 dataType: 'xml',
+        //                 type: 'POST',
+        //                 success: function (xml) {
+        //
+        //                 }
+        //             })
+        //             hasSubmitted = true;
+        //         }
+        //
+        //     // });
+        //
+        // }
+        // $("#pay_btn").click(sub)
+
+    </script>
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                         <form action="/searchRes" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn" >
+                             <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <br><br>
+
+    <table id="seatDiv">
+        <tr>
+            <td id="left">
+                <div id="test"  >
+                    <div id="screen">银&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;幕</div>
+                    <div id="seat" >
+                        {{range .Seats}}
+                        {{if .First}}
+                        <br>
+                        {{end}}
+                        <span class="pic" >
+                            {{if .Status}} <!--已售-->
+                            <img src="/static/img/红.gif" >
+<!--                            <br>-->
+                            {{else}}    <!--可选-->
+                            <img src="/static/img/白.gif" id="{{.Row}},{{.Column}}" class="seat1" title="{{.Row}}排{{.Column}}列" onclick="change1({{.Row}},{{.Column}})">
+                            <script>
+                                var s1=""
+                                function change1(i,j){
+                                    var x = i.toString();
+                                    var y = j.toString();
+                                    element=document.getElementById(i+","+j)
+                                    if (element.getAttribute("src")=="/static/img/绿.gif")
+                                    {
+                                        element.src="/static/img/白.gif";
+                                        s1 = s1+"del#"+x+","+y+"-";
+                                    }
+                                    else
+                                    {
+                                        element.src="/static/img/绿.gif";
+                                        s1 = s1+"add#"+x+","+y+"-";
+                                    }
+                                }
+                            </script>
+                            {{end}}
+                        </span>
+                        {{end}}
+                    </div>
+                </div>
+            </td>
+
+            <td id="right">
+                <div id="title"><b>{{.MovieName}}</b></div>
+                <br>
+                <div class="info" >{{.CinemaName}}</div>
+                <div class="info">影厅：<span id="room" >{{.RoomName}}</span></div>
+                <div class="info">票价：￥{{.Price}}/张</div>
+<!--                <div class="info">-->
+<!--                    <span>已选座位：</span>-->
+<!--&lt;!&ndash;                    <span>1排1号</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>1排1号</span>&ndash;&gt;-->
+<!--                    <span id="selected_seat"></span>-->
+<!--                </div>-->
+
+                <br><br><br>
+<!--                <div>-->
+<!--                    <span>总价：</span>-->
+<!--                    <span id="amount"><b>￥60元</b></span>-->
+<!--                </div>-->
+                <div class="buy_btn">
+                    <a href="/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}"><input type="submit"  value="确认支付" id="pay_btn"></a>
+<!--                   <input type="button"  value="确认支付" id="pay_btn">-->
+                    <script>
+                        // 全局标志变量
+                        var hasSubmitted = false;
+                        function sub(){
+                            if (!hasSubmitted) {
+                                $.ajax({
+                                    url: "/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}",
+                                    data: {s: s1},
+                                    dataType: 'xml',
+                                    type: 'POST',
+                                    success: function (xml) {
+
+                                    }
+                                })
+                                hasSubmitted = true;
+                            }
+
+                            // });
+
+                        }
+                        $("#pay_btn").click(sub)
+                    </script>
+<!--                    <script>-->
+<!--                        // $(function(){-->
+<!--                        // $("#pay_btn").live('click', function(){-->
+<!--                            $("#pay_btn").click(function(){-->
+<!--                                //设置请求地址-->
+<!--                                var url = "/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}";-->
+<!--                                //设置请求参数-->
+<!--                                var param = {"s1":s1};-->
+<!--                                // checkFormNull(param)-->
+<!--                                if(param.trim() == '') {-->
+<!--                                   console.log("参数为空")-->
+<!--                                    return-->
+<!--                                }else {-->
+<!--                                    // //设置请求地址-->
+<!--                                    // var url = "/createOrder?timeId={{.TimeID}}&roomName={{.RoomName}}";-->
+<!--                                    //发送Ajax请求-->
+<!--                                    $.post(url, param, function (res) {-->
+
+<!--                                    });-->
+<!--                                }-->
+
+
+<!--                                // $.ajax({-->
+<!--                                //     // 发送地址 1.不写默认朝当前所在url提交数据-->
+<!--                                //     // 2.全写 指名道姓 https://www.baidu.com-->
+<!--                                //     // 3.只写后缀/login/-->
+<!--                                //     url: "/createOrder?timeId={{.TimeID}}",-->
+<!--                                //     type: 'post',  	// 请求方式 默认get-->
+<!--                                //     data: {"s1":s1},  //   要发送的数据-->
+<!--                                //     success:function(args){-->
+<!--                                //         // 回调函数(异步回调机制)-->
+<!--                                //     }-->
+<!--                                // });-->
+<!--                            });-->
+<!--                        // function checkFormNull(from){-->
+<!--                        //     for(i=0;i<from.length;i++){-->
+<!--                        //         if(form.elements[i].value == "") {-->
+<!--                        //             alert(form.elements[i].title+"不能为空");-->
+<!--                        //             return-->
+<!--                        //-->
+<!--                        //         }-->
+<!--                        //     }-->
+<!--                        // }-->
+
+<!--                        // });-->
+<!--                    </script>-->
+                </div>
+            </td>
+        </tr>
+
+    </table>
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            {{range .Seats}}-->
+<!--                <td>-->
+<!--                    {{if .Status}} &lt;!&ndash;已售&ndash;&gt;-->
+<!--                        <img src="/static/img/红.gif" >-->
+<!--                    {{else}}    &lt;!&ndash;可选&ndash;&gt;-->
+<!--                         <img src="/static/img/白.gif" id="{{.Row}},{{.Column}}" class="seat1" title="{{.Row}}排{{.Column}}列" onclick="change1({{.Row}},{{.Column}})">-->
+<!--                    <script>-->
+<!--                        var s1=""-->
+<!--                        function change1(i,j){-->
+<!--                            var x = i.toString();-->
+<!--                            var y = j.toString();-->
+<!--                            element=document.getElementById(i+","+j)-->
+<!--                            if (element.getAttribute("src")=="/static/img/绿.gif")-->
+<!--                            {-->
+<!--                                element.src="/static/img/白.gif";-->
+<!--                                s1 = s1+"add#"+x+","+y+"-";-->
+<!--                            }-->
+<!--                            else-->
+<!--                            {-->
+<!--                                element.src="/static/img/绿.gif";-->
+<!--                                s1 = s1+"del#"+x+","+y+"-";-->
+<!--                            }-->
+<!--                        }-->
+<!--                    </script>-->
+<!--                    {{end}}-->
+<!--                </td>-->
+<!--            {{end}}-->
+<!--        </tr>-->
+<!--    </table>-->
+
+    <br><br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+
+</body>
+</html>

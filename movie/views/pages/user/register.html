@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <!--引入jquery.js文件 -->
+    <script type="text/javascript" src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function(){
+            //给注册按钮绑定单击事件
+            $("#sub_btn").click(function(){
+                //获取用户输入的用户名
+                var username = $("#username").val();
+                //设置验证用户名的正则表达式
+                var usernameReg = /^[a-zA-Z0-9_]{1,16}$/;
+                //验证是否符合规则
+                var flag = usernameReg.test(username);
+                if(!flag){
+                    alert("请输入1-16位的字母、数字或下划线的用户名！");
+                    return false;
+                }
+                //获取用户输入的密码
+                var password = $("#password").val();
+                //设置验证密码的正则表达式
+                var passwordReg = /^[a-zA-Z0-9_]{6,18}$/;
+                if(!passwordReg.test(password)){
+                    alert("请输入6-18位的字母、数字或下划线的密码！")
+                    return false;
+                }
+                //获取用户输入的确认密码
+                var repwd = $("#repwd").val();
+                if(repwd == ""){
+                    alert("确认密码不能为空！");
+                    return false;
+                }
+                //判断两次输入的密码是否一致
+                if(repwd != password){
+                    //将确认密码清空，即将确认密码密码框中的value属性设置为空
+                    $("#repwd").val("");
+                    alert("两次输入的密码不一致！");
+                    return false;
+                }
+                //获取用户输入的邮箱
+                var tel = $("#tel").val();
+                //设置验证邮箱的正则表达式
+                var telReg = /^[0-9]{11}$/;
+                if(!telReg.test(tel)){
+                    alert("电话号码格式不正确！");
+                    return false;
+                }
+
+            });
+            //将显示错误提示信息的span标签隐藏
+            // $("#msg").hide();
+            // if("{{.}}"=="用户名已存在！"){
+            //     $("#msg").show();
+            // }
+
+            //发送Ajax请求验证用户名是否存在
+            //给输入用户名的文本框绑定change事件(如果发生变化)
+            $("#username").change(function(){
+                //获取用户输入的用户名
+                var username = $(this).val();//this是文本框，dom对象
+                //设置请求地址
+                var url = "/checkUserName";
+                //设置请求参数
+                var param = {"username":username};
+                //发送Ajax请求
+                $.post(url,param,function(res){
+                    //将显示提示信息的span元素显示
+                    $("#msg").show();
+                    //将响应信息设置到span元素中
+                    $("#msg").html(res);
+                });
+            });
+        });
+    </script>
+</head>
+
+
+<body>
+    <div >
+        <img class="logo_img" alt="" style="height: 175px;width: 450px" src="/static/img/logo.jpg" >
+    </div>
+    <div class="wel">欢迎注册</div>
+    <div id="registForm">
+        <div >
+            <a href="/main" class="titl">< 返回首页</a>
+            <a href="/pages/user/login.html" class="titr">去登录</a>
+        </div>
+        <br><br>
+        <div id="msg">
+
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;请输入您的信息</span>
+        </div>
+        <br>
+        <div class="form">
+            <form action="/register" method="post">
+                <label>用户名称：</label>
+                <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1" name="username" id="username" />
+                <br />
+                <br />
+                <label>用户密码：</label>
+                <input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="password" id="password" />
+                <br />
+                <br />
+                <label>确认密码：</label>
+                <input class="itxt" type="password" placeholder="确认密码" autocomplete="off" tabindex="1" name="repwd" id="repwd" />
+                <br />
+                <br />
+                <label>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</label>
+                <input class="itxt" type="text" placeholder="请输入电话号码" autocomplete="off" tabindex="1" name="tel" id="tel" />
+                <br />
+                <br />
+                <br />
+                <input type="submit" value="注册" id="sub_btn" />
+            </form>
+        </div>
+    </div>
+
+    <div id="bottom1">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

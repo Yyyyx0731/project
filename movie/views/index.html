@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>启程电影</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+<!--        <span class="wel_word">启程电影</span>-->
+
+        <div >
+            <table id="tab" >
+                <tr>
+                    <td id="now">首页</td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                         <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+<!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        {{if .IsLogin}}
+                            <a href="/logout">{{.Username}}退出登录</a>
+                        {{else}}
+                            <a href="/pages/user/login.html" >登录</a> |
+                            <a href="/pages/user/register.html" >注册</a> &nbsp;&nbsp;
+                        {{end}}
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+
+
+    <span id="pic" >
+        <img src="/static/img/bigPic.png" width="100%" />
+    </span>
+
+
+    <br><br><br>
+
+    <span id="main" >
+        <table >
+            <tr>
+                <td>
+                     <table class="filmList" style="width: 1020px">
+                        <tr class="film2">
+                            <td colspan="3" id="ziBig">
+                                <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正在热映</div>
+                            </td>
+                            <td id="ziSmall" >
+                                 <div align="right"><a href="/movies?type=0">全部 ></a></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            {{range .MovieOnline}}
+                            <td class="film1">
+                                <table class="film">
+            <!--                        range-->
+                                    <tr >
+                                        <br>
+                                        <div>
+                                            <a href="/info?movieId={{.ID}}"><img src="{{.ImgPath}}" width="190px" height="270px"></a>
+                                        </div>
+<!--                                        <br>-->
+                                        <div class="movieName">{{.Name}}</div>
+                                        <br>
+                                    </tr>
+<!--                                    <br>-->
+<!--                                    <tr><div class="movieName">{{.Name}}</div></tr>-->
+                                    <br>
+                                    <tr >
+                                        <td class="buy" >
+                                             <a href="/info?movieId={{.ID}}" >购&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            {{end}}
+                        </tr>
+                        <tr>
+                             {{range .MovieOnline2}}
+                            <td class="film1">
+                                <table class="film">
+            <!--                        range-->
+                                    <tr >
+                                        <br>
+                                        <div>
+                                            <a href="/info?movieId={{.ID}}"><img src="{{.ImgPath}}" width="190px" height="270px"></a>
+                                        </div>
+                                        <!--                                        <br>-->
+                                        <div class="movieName">{{.Name}}</div>
+                                        <br>
+                                    </tr>
+                                    <!--                                    <br>-->
+                                    <!--                                    <tr><div class="movieName">{{.Name}}</div></tr>-->
+                                    <br>
+                                    <tr >
+                                        <td class="buy" >
+                                             <a href="/info?movieId={{.ID}}" class="goToInfo" >购&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            {{end}}
+                        </tr>
+                    </table>
+                </td>
+
+                <td >
+                    <table style="text-align: left;width: 400px;height: 500px;font-size: 21px"   >
+                        <tr><div style="color: crimson;font-size:28px;text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票房排行</div></tr>
+                       <br>
+                        <tr>
+                            <td class="num1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;{{.RankByAmount1.Name}}&nbsp;&nbsp;&nbsp;{{.RankByAmount1.Amount}}亿</td>
+                        </tr>
+                        <tr>
+                            <td class="num2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;{{.RankByAmount2.Name}}&nbsp;&nbsp;&nbsp;{{.RankByAmount2.Amount}}亿</td>
+                        </tr>
+                        <tr>
+                            <td class="num3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;{{.RankByAmount3.Name}}&nbsp;&nbsp;&nbsp;{{.RankByAmount3.Amount}}亿</td>
+                        </tr>
+                        <tr>
+                            <td class="num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByAmount4.Name}}&nbsp;&nbsp;&nbsp;{{.RankByAmount4.Amount}}亿</td>
+                        </tr>
+                        <tr>
+                            <td class="num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByAmount5.Name}}&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByAmount5.Amount}}亿</td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+
+
+    <br><br><br>
+
+    <table >
+        <tr>
+            <td>
+                <table class="filmList1" style="width: 1020px">
+                    <tr class="film2">
+                        <td colspan="3" id="ziBig1">
+                            <div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即将上映</div>
+                        </td>
+                        <td id="ziSmall1" >
+                            <div align="right"><a href="/movies?type=1">全部 ></a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        {{range .MovieNone}}
+                            <td class="film1">
+                                <table class="film">
+            <!--                        range-->
+                                    <tr >
+                                        <br>
+                                        <div>
+                                            <a href="/info?movieId={{.ID}}"><img src="{{.ImgPath}}" width="190px" height="270px"></a>
+                                        </div>
+                                        <div class="movieName">{{.Name}}</div>
+                                        <br>
+                                    </tr>
+                                    <br>
+                                    <tr >
+                                        <td class="buy" >
+                                             <a href="/info?movieId={{.ID}}" >想&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            {{end}}
+                    <tr>
+                    {{range .MovieNone2}}
+                            <td class="film1">
+                                <table class="film">
+            <!--                        range-->
+                                    <tr >
+                                        <br>
+                                        <div>
+                                            <a href="/info?movieId={{.ID}}"><img src="{{.ImgPath}}" width="190px" height="270px"></a>
+                                        </div>
+                                        <!--                                        <br>-->
+                                        <div class="movieName">{{.Name}}</div>
+                                        <br>
+                                    </tr>
+                                    <!--                                    <br>-->
+                                    <!--                                    <tr><div class="movieName">{{.Name}}</div></tr>-->
+                                    <br>
+                                    <tr >
+                                        <td class="buy" >
+                                             <a href="/info?movieId={{.ID}}" >想&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            {{end}}
+                </tr>
+                </table>
+            </td>
+
+            <td>
+                 <table style="text-align: left;width: 400px;height: 500px;font-size: 21px"   >
+                        <tr><div style="color: deepskyblue;font-size:28px;text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOP 5</div></tr>
+                       <br>
+                            <tr>
+                                <td class="num11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;{{.RankByScore1.Name}}&nbsp;&nbsp;&nbsp;{{.RankByScore1.Score}}</td>
+                            </tr>
+                            <tr>
+                                <td class="num22">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;{{.RankByScore2.Name}}&nbsp;&nbsp;&nbsp;{{.RankByScore2.Score}}</td>
+                            </tr>
+                            <tr>
+                                <td class="num33">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;{{.RankByScore3.Name}}&nbsp;&nbsp;&nbsp;{{.RankByScore3.Score}}</td>
+                            </tr>
+                            <tr>
+                                <td class="num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByScore4.Name}}&nbsp;&nbsp;&nbsp;{{.RankByScore4.Score}}</td>
+                            </tr>
+                            <tr>
+                                <td class="num">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByScore5.Name}}&nbsp;&nbsp;&nbsp;&nbsp;{{.RankByScore5.Score}}</td>
+                            </tr>
+      </table>
+
+            </td>
+        </tr>
+    </table>
+    </span>
+
+    <br><br><br><br>
+
+
+
+
+
+
+    <div id="bottom">
+        <span>
+            启程电影.Copyright &copy;2023
+        </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

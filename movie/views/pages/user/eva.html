@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评分界面</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            $("#sub_eva").click(function (){
+                alert("已提交评分")
+            })
+        })
+    </script>
+</head>
+
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+        <!--        <span class="wel_word">启程电影</span>-->
+
+        <div >
+            <table id="tab" >
+                <tr>
+                    <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                         <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                             <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                    <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                     <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <div id="back">
+        <table id="infoTab"  >
+            <tr>
+                <td rowspan="2">
+                    <div>
+                        <img src="{{.ImgPath}}" id="info_img">
+                    </div>
+                </td>
+                <td>
+                    <div id="info">
+                        <span style="font-size: 30px">{{.Name}}</span>
+                        <br><br>
+                        <span>{{.Type}}</span>
+                        <br>
+                        <span>{{.Where}} / {{.Time}}分钟</span>
+                        <br>
+                    </div>
+                </td>
+                <td >
+                    <div id="r">
+                        <span>评分：{{.Score}}分</span>
+                        <br><br>
+                        <span>票房：{{.Amount}}亿</span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br>
+
+    <!--提交完之后红字显示已提交 写个函数is判断-->
+    <div id="evaForm">
+        <form action="/submitScore?movieId={{.ID}}" method="post"> <!--发给更新评分的页面-->
+            <label style="margin-left: 50px;">评分：</label>
+            <input id="evaScore" type="text" placeholder="请输入评分" autocomplete="off" tabindex="1" name="score" />
+            <br><br><br>
+<!--            <input type="submit" value="提   交" id="sub_eva" />-->
+            <div class="btn1" style="margin-left: 100px">
+                <input type="submit" name="submitScore" value="提      交" class="delete_btn" id="sub_eva">
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+</html>

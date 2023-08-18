@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影详情</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+
+</head>
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+    <!--        <span class="wel_word">启程电影</span>-->
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                        <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                            <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        {{if .IsLogin}}
+                            <a href="/logout">{{.Session.UserName}}退出登录</a>
+                        {{else}}
+                            <a href="/pages/user/login.html" >登录</a> |
+                            <a href="/pages/user/register.html" >注册</a> &nbsp;&nbsp;
+                        {{end}}
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <div id="back">
+        <table id="infoTab"  >
+            <tr>
+                <td rowspan="2">
+                    <div>
+                        <img src="{{.Movie.ImgPath}}" id="info_img">
+                    </div>
+                </td>
+                <td>
+                    <div id="info">
+                        <span style="font-size: 30px">{{.Movie.Name}}</span>
+                        <br><br>
+                        <span>{{.Movie.Type}}</span>
+                        <br>
+                        <span>{{.Movie.Where}} / {{.Movie.Time}}分钟</span>
+                        <br>
+                    </div>
+                </td>
+                <td >
+                    <div id="r">
+                        {{if .Movie.Score}}
+                        <span>评分：{{.Movie.Score}}分</span>
+                        {{else}}
+                        <span>暂无评分</span>
+                        {{end}}
+                        <br><br>
+                        {{if .Movie.Amount}}
+                        <span>票房：{{.Movie.Amount}}亿</span>
+                        {{else}}
+                        <span>票房：暂无数据</span>
+                        {{end}}
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <a href="/selectCinema?movieId={{.Movie.ID}}"><input type="submit" name="buyTicket" value="购      票" id="buy_btn"></a>
+                </td>
+                <td id="goEva">
+                    <a href="/eva?movieId={{.Movie.ID}}">去评分</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="con">
+        <h2 >剧情简介</h2>
+        <br>
+        <div>
+            {{.Movie.Introduce}}
+        </div>
+        <br><br><br>
+        <h2>导演</h2>
+        <br>
+        <div>{{.Movie.Director}}</div>
+    </div>
+
+    <br><br><br>
+
+    <div id="bottom">
+        <span>
+            启程电影.Copyright &copy;2023
+        </span>
+    </div>
+    <br><br>
+
+</body>
+</html>

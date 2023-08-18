@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>场次管理</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            $(".delete_btn").click(function (){
+                alert("确定要删除该场次吗？")
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <span id="head">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div id="manageHead">
+            <table id="manageTab" >
+                <tr>
+                    <td>
+                        <a href="/manage" >电影管理</a>&nbsp;&nbsp;
+                    </td>
+                    <td id="now">场次管理</td>
+                    <td >
+                        <a href="/manageRoom" >影厅管理</a>&nbsp;&nbsp;
+                    </td>
+                     <td>
+                        <a href="/cinemaLogout" >退出管理</a>&nbsp;&nbsp;
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+         <div id="manageTitle"><br>{{.CinemaName}}后台管理</div>
+    </span>
+
+    <div id="addTime" >
+        <a href="/toModifyTime"><input type="submit" name="addTime" value="添      加" class="add_btn"></a>
+    </div>
+
+    <div id="timeList1">
+        <hr color="lightgrey">
+        <div id="listTitle" class="listHeight">
+            <div class="tabCon"><b>放映时间</b></div>
+            <div class="tabCon"><b>影片名</b></div>
+            <div class="tabCon"><b>放映厅</b></div>
+            <div class="tabCon"><b>售价</b></div>
+            <div class="tabCon"><b>操作</b></div>
+        </div>
+        <hr color="lightgrey">
+
+        {{range .Times}}
+        <div class="listHeight1">
+            <div class="time">
+                <br>
+                <div class="startTime">{{.Date}}</div>
+                <div class="startTime">{{.StartTime}}-{{.EndTime}}</div>
+            </div>
+            <div class="tabCon1">{{.MovieName}}</div>
+            <div class="tabCon1">{{.RoomName}}</div>
+            <div class="price1" >￥{{.Price}}元</div>
+            <table class="timeTab" >
+                <tr>
+                    <td>
+                        <div class="btn1">
+                            <a href="/toModifyTime?timeId={{.ID}}"><input type="submit" name="modifyTime" value="修      改" class="modify_btn"></a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="btn1">
+                            <a href="/deleteTime?timeId={{.ID}}"><input type="submit" name="deleteTime" value="删      除" class="delete_btn"></a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <hr color="lightgrey">
+        {{end}}
+
+<!--        <div class="listHeight1">-->
+<!--            <div class="time">-->
+<!--                <br>-->
+<!--                <div class="startTime">2023年8月10</div>-->
+<!--                <div class="startTime">10:30-12:00</div>-->
+<!--            </div>-->
+<!--            <div class="tabCon1">国语2D</div>-->
+<!--            <div class="tabCon1">1号激光厅</div>-->
+<!--            <div class="price1" >￥30.0元</div>-->
+<!--            <table class="timeTab" >-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <div class="btn1">-->
+<!--                            <a href="/modifyTime"><input type="submit" name="modifyTime" value="修      改" class="modify_btn"></a>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>-->
+<!--                        <div class="btn1">-->
+<!--                            <a href="/manageTime"><input type="submit" name="deleteTime" value="删      除" class="delete_btn"></a>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                </tr>-->
+<!--            </table>-->
+
+<!--        </div>-->
+<!--        <hr color="lightgrey">-->
+    </div>
+
+    <br><br><br>
+
+    <div id="bottom">
+        <span>
+            启程电影.Copyright &copy;2023
+        </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

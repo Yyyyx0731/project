@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function(){
+            //给删除图书的超链接绑定单击事件
+            $(".delOrder").click(function(){// . 类选择器
+                //获取书名
+                // var title = $(this).attr("id");//this是class=deleteBook的 a 标签
+                // var flag = confirm("确定要删除【"+title+"】这本图书吗？");
+                // if(!flag){
+                // 	//取消默认行为
+                // 	return false;
+                // }
+                //确认框confirm
+                return confirm("确定要取消该订单吗？");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                         <form action="/searchRes" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="button" value="搜索" id="btn">
+                             <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td id="now">
+                        我的订单
+                    </td>
+                     <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <div id="orderList">
+        <table  id="orderTab">
+            <tr id="orderTit" class="tr">
+                <td>订单号</td>
+                <td>日期</td>
+                <td>数量</td>
+                <td>金额</td>
+            </tr>
+            {{range .Orders}}
+            <tr class="tr">
+                <td>{{.ID}}</td>
+                <td>{{.Date}}</td>
+                <td>{{.Count}}</td>
+                <td>￥{{.Amount}}元</td>
+                <td>
+                    <a href="/orderDetail?orderId={{.ID}}">查看详情</a>
+                </td>
+                <td>
+                    <a href="/deleteOrder?orderId={{.ID}}" class="delOrder" id="{{.ID}}">取消订单</a>
+                </td>
+            </tr>
+            {{end}}
+<!--            <tr class="tr">-->
+<!--                <td>88888888</td>-->
+<!--                <td>2023年8月10日</td>-->
+<!--                <td>2</td>-->
+<!--                <td>￥60元</td>-->
+<!--                <td>-->
+<!--                    <a href="/orderDetail?orderId=1">查看详情</a>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <a href="/getMyOrder">取消订单</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr class="tr">-->
+<!--                <td>88888888</td>-->
+<!--                <td>2023年8月10日</td>-->
+<!--                <td>2</td>-->
+<!--                <td>￥60元</td>-->
+<!--                <td>-->
+<!--                    <a href="/orderDetail?orderId=1">查看详情</a>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <a href="/getMyOrder">取消订单</a>-->
+<!--                </td>-->
+<!--            </tr>-->
+        </table>
+
+    </div>
+
+
+    <br><br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+</body>
+</html>

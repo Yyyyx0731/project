@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选择影院</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+<!--    <script>-->
+<!--        $(function(){-->
+<!--            $(".selectCinema_btn").click(function(){-->
+<!--                var movieId=$("#movie").val();-->
+<!--                $.ajax({-->
+<!--                    url:"/selectTime",//要请求的服务器url-->
+<!--                    data:{movieId:movieId},//第一个name对应的是后端request.getParameter("name")的name、第二个name对应的是此js中的var name = $("#name").val();的name-->
+<!--                    async:true,//是否是异步请求-->
+<!--                    cache:false,//是否缓存结果-->
+<!--                    type:"POST",//请求方式-->
+<!--                    traditional: true,  //这里设置为true-->
+<!--                });-->
+<!--            });-->
+<!--        //     $(".selectCinema_btn").change(function(){-->
+<!--        //         //获取用户输入的用户名-->
+<!--        //         var movieId=$("#movie").val();-->
+<!--        //         //设置请求地址-->
+<!--        //         var url = "/selectTime";-->
+<!--        //         //设置请求参数-->
+<!--        //         var param = {"movieId":movieId};-->
+<!--        //-->
+<!--        //         //发送Ajax请求-->
+<!--        //         $.post(url,param,function(res){-->
+<!--        //-->
+<!--        //         });-->
+<!--        //     });-->
+<!--        });-->
+<!--    </script>-->
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                          <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                              <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <div id="back1">
+        <table id="infoTab1"  >
+            <tr>
+                <td rowspan="2">
+                    <div>
+                        <img src="{{.Movie.ImgPath}}" id="info_img">
+                    </div>
+                </td>
+                <td>
+                    <div id="info">
+                        <span style="font-size: 30px">{{.Movie.Name}}</span>
+                        <br><br>
+                        <span>{{.Movie.Type}}</span>
+                        <br>
+                        <span>{{.Movie.Where}} / {{.Movie.Time}}分钟</span>
+                        <br>
+                    </div>
+                </td>
+                <td >
+                    <div id="r">
+                        <span>评分：{{.Movie.Score}}分</span>
+                        <br><br>
+                        <span>票房：{{.Movie.Amount}}亿</span>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td id="goEva">
+                    <a href="/eva?movieId={{.Movie.ID}}">去评分</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <br><br><br>
+<!--    <form>-->
+
+<!--    </form>-->
+
+
+
+
+    <div id="cinemaList">
+        <h1>影院列表</h1>
+        <br>
+        {{range .Cinema}}
+        <div>
+            <br>
+            <div class="cinemaName">{{.Name}}</div>
+            <div>
+<!--                <a href="/selectTime?cinemaId={{.ID}}"><input type="submit" name="buyTicket" value="选择场次" class="selectCinema_btn"></a>-->
+               <input type="submit" name="buyTicket" value="选择场次" class="selectCinema_btn" cinemaID="{{.ID}}">
+<!--                <input type="hidden" value="{{.ID}}" class="cinema">-->
+<!--                <script>-->
+<!--                    //给确定按钮绑定单击事件-->
+<!--                    $(".selectCinema_btn").click(function(){-->
+<!--                        //获取输入的页码-->
+<!--                        var movieId = $("#movie").val();-->
+<!--                        var cinemaId = $("#cinema").val();-->
+<!--                        location = "/selectTime?movieId="+movieId+"&cinemaId="+cinemaId-->
+<!--                    });-->
+<!--                </script>-->
+            </div>
+            <br>
+            <div class="adda">地址:{{.Address}}</div>
+            <br>
+            <hr color="lightgray">
+        </div>
+        {{end}}
+
+        <input type="hidden" value="{{.Movie.ID}}" id="movie">
+                        <script>
+                            //给确定按钮绑定单击事件
+                            $(".selectCinema_btn").click(function(){
+                                //获取输入的页码
+                                var movieId = $("#movie").val();
+                                var cinemaId = $(this).attr("cinemaID")
+                                location = "/selectTime?movieId="+movieId+"&cinemaId="+cinemaId
+                            });
+                        </script>
+
+
+    </div>
+
+    <br><br>    <br><br>
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br>    <br><br>
+
+<!--    <form action="/selectTime" method="post">-->
+<!--        <input type="hidden" name="movieId" value="{{.Movie.ID}}">-->
+<!--    </form >-->
+
+</body>
+</html>

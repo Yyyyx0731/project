@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影厅信息</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            // //获取购物项的id
+            // var cartItemId = $(this).attr("id");
+            // //获取用户输入的图书的数量
+            // var bookCount = $(this).val();
+            $(".edit_text2").change(function() {
+                var row = $(".edit_text2").val();
+                var column = $(".edit_text3").val();
+
+                //设置请求的url
+                var url = "/updateRoomInfo";
+                //设置请求参数
+                var params = {"row": row, "column": column};
+
+                //发送Ajax请求
+                $.post(url, params, function (res) {
+                    //设置座位总数量
+                    $(".edit_text4").text(res.Count);//对象.属性 拿到值
+
+                }, "json");
+            });
+            $(".edit_text3").change(function() {
+                var row = $(".edit_text2").val();
+                var column = $(".edit_text3").val();
+
+                //设置请求的url
+                var url = "/updateRoomInfo";
+                //设置请求参数
+                var params = {"row": row, "column": column};
+
+                //发送Ajax请求
+                $.post(url, params, function (res) {
+                    //设置座位总数量
+                    $(".edit_text4").text(res.Count);//对象.属性 拿到值
+
+                }, "json");
+            });
+        });
+
+        $(function (){
+            $("#editTime_btn").click(function (){
+                alert("提交数据成功！")
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <span id="head">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div id="manageHead">
+            <table id="manageTab" >
+                <tr>
+                    <td>
+                        <a href="/manage" >电影管理</a>&nbsp;&nbsp;
+                    </td>
+                    <td >
+                        <a href="/manageTime" >场次管理</a>&nbsp;&nbsp;
+                    </td>
+                    <td id="now">影厅管理</td>
+                     <td>
+                        <a href="/cinemaLogout" >退出管理</a>&nbsp;&nbsp;
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+         <div id="manageTitle"><br>后台管理</div>
+    </span>
+
+    <div id="editTime" style="border: lightgrey solid">
+        <br>
+        <div style="font-size: 25px;margin-left: 50px"><a href="/manageRoom">< 返回</a></div>
+        <br>
+        <div>
+            <form action="/modifyRoom" method="POST">
+                <div>
+                    <div id="editRoomTit">
+                        <span class="editTab">影厅</span>
+                        <span class="editTab">座位行数</span>
+                        <span class="editTab">座位列数</span>
+                        <span class="editTab">座位总数</span>
+                    </div>
+                    <br>
+                    <div>
+                        {{if .}}	<!--修改-->
+                        <input type="hidden" name="roomId" value="{{.ID}}">		<!--隐藏域-->
+                        <input name="name" type="text" value="{{.Name}}" class="edit_text1"/>
+                        <input name="row" type="text" value="{{.Row}}" class="edit_text2"/>
+                        <input name="column" type="text" value="{{.Column}}" class="edit_text3"/>
+                        <span   class="edit_text4">{{.GetSeatCount}}</span>
+                        {{else}}	<!--添加-->
+                        <input type="hidden" name="roomId" value="}">		<!--隐藏域-->
+                        <input name="name" type="text" value="" class="edit_text1"/>
+                        <input name="row" type="text" value="" class="edit_text2"/>
+                        <input name="column" type="text" value="" class="edit_text3"/>
+                        <span class="edit_text4"></span>
+                        {{end}}
+                        <br><br><br>
+                        <input type="submit" value="提   交" id="editTime_btn"/>
+                        <br><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成订单</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                   <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                         <form action="/searchRes" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="button" value="搜索" id="btn">
+                             <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        <a href="/logout">退出登录</a>
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <br>
+
+    <div id="goToMyOrder"><a href="/getMyOrder" >我的订单 ></a></div>
+
+    <div id="crOrderDiv">
+        <div style="font-size: 20px;margin-top: 180px">已为您生成订单</div>
+        <br><br>
+        <div style="color: red;font-size: 25px">
+            订单号为：{{.ID}}
+        </div>
+    </div>
+
+    <br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br>
+
+
+</body>
+</html>

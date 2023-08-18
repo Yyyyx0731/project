@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            $(".delete_btn1").click(function (){
+                var name = $(this).attr("id")
+                $.ajax({
+                    url: "/deleteMovie",
+                    data: {movieName: name},
+                    dataType: 'xml',
+                    type: 'POST',
+                    success: function (xml) {
+
+                    }
+                });
+                alert("确定要删除电影【"+name+"】吗？")
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <span id="head">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div id="manageHead">
+            <table id="manageTab" >
+                <tr>
+                    <td id="now">电影管理</td>
+                    <td>
+                        <a href="/manageTime" >场次管理</a>
+                    </td>
+                    <td >
+                        <a href="/manageRoom" >影厅管理</a>&nbsp;&nbsp;
+                    </td>
+                     <td>
+                        <a href="/cinemaLogout" >退出管理</a>&nbsp;&nbsp;
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+         <div id="manageTitle"><br>{{.CinemaName}}后台管理</div>
+    </span>
+
+    <span>
+       {{if .Type}}   <!--  即将上映-->
+             <table class="type">
+                <tr>
+                   <td id="noneType1">
+                       <a href="/manage?type=0" >正在热映</a>
+                   </td>
+                    <td id="nowType1">即将上映</td>
+                </tr>
+            </table>
+        {{else}}    <!--  正在热映-->
+            <table class="type">
+                <tr>
+                   <td id="nowType">正在热映</td>
+                   <td id="noneType">
+                       <a href="/manage?type=1" >即将上映</a>
+                   </td>
+                </tr>
+            </table>
+        {{end}}
+    </span>
+
+    <br><br>
+
+
+    <div id="addMovie" >
+        <a href="/addMovie"><input type="submit" name="addMovie" style="width: 200px;height: 55px;font-size: 25px" value="添 加 电 影" class="addMovie_btn"></a>
+    </div>
+
+    <div id="rank">
+        {{if .Type}} <!--按票房-->
+        {{range .Movie1}}
+        <div >
+            <table class="rankTab" >
+                <tr style="margin-left: 100px">
+                    <!--                            <td rowspan="2" class="rank"><b>1</b></td>-->
+                    <td rowspan="2" >
+                        <div>
+                            <img class="movie_img" alt="" src="{{.ImgPath}}" style="margin-left: 40px">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rank_info">
+                            <span style="font-size: 30px">{{.Name}}</span>
+                            <br><br>
+                            <span>{{.Type}}</span>
+                            <br>
+                            <span>{{.Where}} / {{.Time}}分钟</span>
+                            <br>
+                        </div>
+                    </td>
+                    <td >
+                        <div class="rank_r" style="color:orange">
+                            {{if .Score}}
+                            <span>评分：{{.Score}}分</span>
+                            {{else}}
+                            <span>暂无评分</span>
+                            {{end}}
+                            <br><br>
+                            {{if .Amount}}
+                            <span>票房：{{.Amount}}亿</span>
+                            {{else}}
+                            <span>票房：暂无数据</span>
+                            {{end}}
+                        </div>
+                    </td>
+                    <td>
+                        <a href="/deleteMovie?movieId={{.ID}}&type=1" ><input type="submit" name="buyTicket" value="删      除"  class="delete_btn1" id="{{.Name}}"></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        {{end}}
+        {{else}}    <!-- 按评分 -->
+        {{range .Movie0}}
+        <div>
+            <table class="rankTab" >
+                <tr style="margin-left: 100px">
+                    <!--                            <td rowspan="2" class="rank"><b>1</b></td>-->
+                    <td rowspan="2" >
+                        <div>
+                            <img class="movie_img" alt="" src="{{.ImgPath}}" style="margin-left: 40px">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="rank_info">
+                            <span style="font-size: 30px">{{.Name}}</span>
+                            <br><br>
+                            <span>{{.Type}}</span>
+                            <br>
+                            <span>{{.Where}} / {{.Time}}分钟</span>
+                            <br>
+                        </div>
+                    </td>
+                    <td >
+                        <div class="rank_r" style="color:orange">
+                            {{if .Score}}
+                            <span>评分：{{.Score}}分</span>
+                            {{else}}
+                            <span>暂无评分</span>
+                            {{end}}
+                            <br><br>
+                            {{if .Amount}}
+                            <span>票房：{{.Amount}}亿</span>
+                            {{else}}
+                            <span>票房：暂无数据</span>
+                            {{end}}
+                        </div>
+                    </td>
+                    <td>
+                        <a href="/deleteMovie?movieId={{.ID}}&type=0" ><input type="submit" name="buyTicket" value="删      除" class="delete_btn1" id="{{.Name}}"></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+        {{end}}
+        {{end}}
+
+    </div>
+
+<!--    <div id="movieList">-->
+<!--        <div>-->
+<!--            <table class="rankTab" >-->
+<!--                <tr>-->
+<!--&lt;!&ndash;                    <td rowspan="2" class="rank"><b>1</b></td>&ndash;&gt;-->
+<!--                    <td rowspan="2" >-->
+<!--                        <div>-->
+<!--                            <img class="movie_img" alt="" src="/static/img/长安三万里.jpg" >-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="rank_info">-->
+<!--                            <span style="font-size: 30px">长安三万里</span>-->
+<!--                            <br><br>-->
+<!--                            <span>历史&nbsp;&nbsp;动画</span>-->
+<!--                            <br>-->
+<!--                            <span>中国大陆 / 168分钟</span>-->
+<!--                            <br>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td >-->
+<!--                        <div class="rank_r" style="color:orange">-->
+<!--                            <span>评分：9.6分</span>-->
+<!--                            <br><br>-->
+<!--                            <span>票房：1000.0万</span>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <a href="/manage" ><input type="submit" name="buyTicket" value="删      除" class="rank_btn"></a>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <table class="rankTab" >-->
+<!--                <tr>-->
+<!--                    &lt;!&ndash;                    <td rowspan="2" class="rank"><b>1</b></td>&ndash;&gt;-->
+<!--                    <td rowspan="2" >-->
+<!--                        <div>-->
+<!--                            <img class="movie_img" alt="" src="/static/img/长安三万里.jpg" >-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="rank_info">-->
+<!--                            <span style="font-size: 30px">长安三万里</span>-->
+<!--                            <br><br>-->
+<!--                            <span>历史&nbsp;&nbsp;动画</span>-->
+<!--                            <br>-->
+<!--                            <span>中国大陆 / 168分钟</span>-->
+<!--                            <br>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td >-->
+<!--                        <div class="rank_r" style="color:orange">-->
+<!--                            <span>评分：9.6分</span>-->
+<!--                            <br><br>-->
+<!--                            <span>票房：1000.0万</span>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <a href="/manage" ><input type="submit" name="buyTicket" value="删      除" class="rank_btn"></a>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <table class="rankTab" >-->
+<!--                <tr>-->
+<!--                    &lt;!&ndash;                    <td rowspan="2" class="rank"><b>1</b></td>&ndash;&gt;-->
+<!--                    <td rowspan="2" >-->
+<!--                        <div>-->
+<!--                            <img class="movie_img" alt="" src="/static/img/长安三万里.jpg" >-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <div class="rank_info">-->
+<!--                            <span style="font-size: 30px">长安三万里</span>-->
+<!--                            <br><br>-->
+<!--                            <span>历史&nbsp;&nbsp;动画</span>-->
+<!--                            <br>-->
+<!--                            <span>中国大陆 / 168分钟</span>-->
+<!--                            <br>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td >-->
+<!--                        <div class="rank_r" style="color:orange">-->
+<!--                            <span>评分：9.6分</span>-->
+<!--                            <br><br>-->
+<!--                            <span>票房：1000.0万</span>-->
+<!--                        </div>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <a href="/manage" ><input type="submit" name="buyTicket" value="删      除" class="rank_btn"></a>-->
+<!--                    </td>-->
+<!--                </tr>-->
+
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+</body>
+</html>

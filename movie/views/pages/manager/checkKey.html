@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证后台管理密钥</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            //切换span标签中的信息
+            if("{{.}}"=="影城名或密码不正确！"){
+                //设置span标签中的文本值
+                $("#msg").text("影城名或密码不正确！");
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+    <div >
+        <img class="logo_img" alt="" style="height: 175px;width: 450px" src="/static/img/logo.jpg" >
+    </div>
+    <div id="manageTit">欢迎您进入启程电影后台管理</div>
+    <div id="manageForm">
+        <div >
+            <a href="/main" class="titl">< 返回首页</a>
+            <a href="/pages/manager/registerCinema.html" class="titr">去注册 ></a>
+        </div>
+        <br><br>
+        <div id="msg">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;请输入影城和设定的密码</span>
+        </div>
+        <br><br><br>
+        <div >
+            <form action="/checkKey" method="post">
+                <label>影城：</label>
+                <input class="itxt" type="text" placeholder="请输入所在影城" autocomplete="off" tabindex="1" name="cinema" />
+                <br />
+                <br />
+                <br>
+                <label>密码：</label>
+                <input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1" name="key" />
+                <br />
+                <br />
+                <br /><br>
+                <input type="submit" value="登    录" id="sub_btn" />
+            </form>
+        </div>
+    </div>
+
+
+
+    <div id="bottom1">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>

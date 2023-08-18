@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>启程电影</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+</head>
+
+<body >
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                    <td >
+                        <a href="/main">首页</a>
+                    </td>
+                    <td id="now">电影</td>
+                    <td>
+                        <a href="/rank?rankType=0" >榜单</a>&nbsp;&nbsp;
+                    </td>
+
+                    <td colspan="2">
+                          <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                              <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        {{if .IsLogin}}
+                            <a href="/logout">{{.Session.UserName}}退出登录</a>
+                        {{else}}
+                            <a href="/pages/user/login.html" >登录</a> |
+                            <a href="/pages/user/register.html" >注册</a> &nbsp;&nbsp;
+                        {{end}}
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <span>
+       {{if .Type}}   <!--  即将上映-->
+             <table class="type">
+                <tr>
+                   <td id="noneType1">
+                       <a href="/movies?type=0" >正在热映</a>
+                   </td>
+                    <td id="nowType1">即将上映</td>
+                </tr>
+            </table>
+        {{else}}    <!--  正在热映-->
+            <table class="type">
+                <tr>
+                   <td id="nowType">正在热映</td>
+                   <td id="noneType">
+                       <a href="/movies?type=1" >即将上映</a>
+                   </td>
+                </tr>
+            </table>
+        {{end}}
+    </span>
+
+    <br><br><br><br>
+
+    <div class="list" >
+        {{if .Type}}   <!--  即将上映-->
+            {{range .Movie1}}
+                <div class="movie">
+                    <div class="img_div">
+                        <a href="/info?movieId={{.ID}}"><img class="movie_img" alt="" src="{{.ImgPath}}" ></a>
+                    </div>
+                    <div class="title" style="height: 50px">{{.Name}}</div>
+                    <div class="online">{{.TimeOnline}}上映</div>
+                </div>
+            {{end}}
+        {{else}}     <!--  正在热映-->
+            {{range .Movie0}}
+                <div class="movie">
+                    <div class="img_div">
+                        <a href="/info?movieId={{.ID}}"><img class="movie_img" alt="" src="{{.ImgPath}}" ></a>
+                    </div>
+                    <div class="title" style="height: 50px;width: 190px">{{.Name}}</div>
+                    {{if .Score}}
+                    <div class="score">{{.Score}}分</div>
+                    {{else}}
+                    <div class="score">暂无评分</div>
+                    {{end}}
+                </div>
+            {{end}}
+        {{end}}
+    </div>
+
+
+    <br><br><br><br>
+
+<!--    <div id="page">-->
+    {{if .Type}}   <!--  即将上映-->
+        <div class="page_nav">
+            {{if .IsHasPrev}}
+            <a href="/movies?type={{.Type}}">首页</a>
+            <a href="/movies?pageNo={{.GetPrevPageNo}}&type={{.Type}}">上一页</a>
+            {{end}}
+            当前是第{{.PageNo}}页，共{{.TotalPageNo1}}页，共{{.TotalRecord1}}条记录
+            {{if .IsHasNext1}}
+            <a href="/movies?pageNo={{.GetNextPageNo1}}&type={{.Type}}">下一页</a>
+            <a href="/movies?pageNo={{.TotalPageNo1}}&type={{.Type}}">末页</a>
+            {{end}}
+            到第<input value="{{.PageNo}}" name="pn" class="pn_input"/>页
+            <input type="button" value="确定" id="sub" >
+            <script>
+                //给确定按钮绑定单击事件
+                $("#sub").click(function(){
+                    //获取输入的页码
+                    var pageNo = $(".pn_input").val();
+                    location = "/movies?pageNo="+pageNo+"&&type={{.Type}}"
+                });
+            </script>
+        </div>
+
+    {{else}}     <!--  正在热映-->
+        <div class="page_nav">
+            {{if .IsHasPrev}}
+            <a href="/movies?type={{.Type}}">首页</a>
+            <a href="/movies?pageNo={{.GetPrevPageNo}}&type={{.Type}}">上一页</a>
+            {{end}}
+            当前是第{{.PageNo}}页，共{{.TotalPageNo0}}页，共{{.TotalRecord0}}条记录
+            {{if .IsHasNext0}}
+            <a href="/movies?pageNo={{.GetNextPageNo0}}&type={{.Type}}">下一页</a>
+            <a href="/movies?pageNo={{.TotalPageNo0}}&type={{.Type}}">末页</a>
+            {{end}}
+            到第<input value="{{.PageNo}}" name="pn" class="pn_input"/>页
+            <input type="button" value="确定" id="sub">
+            <script>
+                //给确定按钮绑定单击事件
+                $("#sub").click(function(){
+                    //获取输入的页码
+                    var pageNo = $(".pn_input").val();
+                    location = "/movies?pageNo="+pageNo+"&&type={{.Type}}"
+                });
+            </script>
+        </div>
+    {{end}}
+<!--    </div>-->
+
+
+
+
+<!--        <span id="page_nav">-->
+
+<!--            <a href="#">首页</a>-->
+<!--            <a href="#">上一页</a>-->
+<!--            <a href="#">3</a>-->
+<!--            【4】-->
+<!--            <a href="#">5</a>-->
+<!--            <a href="#">下一页</a>-->
+<!--            <a href="#">末页</a>-->
+<!--            &nbsp;&nbsp;共10页，30条记录 &nbsp;&nbsp;到第<input value="4" name="pn" id="pn_input"/>页-->
+<!--            <input type="button" value="确定">-->
+<!--        </span>-->
+
+
+
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br><br><br><br>
+
+
+
+
+
+
+</body>
+</html>

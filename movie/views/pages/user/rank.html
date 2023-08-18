@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影榜单</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <style>
+        #rank{
+            counter-reset: section;
+        }
+        #rank tr:before{
+            counter-increment: section;
+            content: counter(section) ".";
+            color: red;
+            font-size: 35px;
+            height: 100%;
+            margin-top: 50px;
+            /*margin-right: 100px;*/
+            /*margin-left: 100px;*/
+        }
+    </style>
+</head>
+
+<body>
+
+    <span id="header">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div >
+            <table id="tab" >
+                <tr>
+                    <td >
+                        <a href="/main">首页</a>
+                    </td>
+                     <td >
+                        <a href="/movies?type=0" >电影</a>&nbsp;&nbsp;
+                    </td>
+                    <td id="now">榜单</td>
+
+                    <td colspan="2">
+                         <form action="/search" method="post">
+                            <input type="text" name="search" placeholder="请输入关键字" id="search">
+                            <input type="submit" value="搜索" id="btn">
+                             <!--                             绑定单击事件-->
+                         </form>
+                    </td>
+                     <td >
+                        <a href="/getMyOrder" >我的订单</a>
+                    </td>
+                    <td >
+                        {{if .IsLogin}}
+                            <a href="/logout">{{.Session.UserName}}退出登录</a>
+                        {{else}}
+                            <a href="/pages/user/login.html" >登录</a> |
+                            <a href="/pages/user/register.html" >注册</a> &nbsp;&nbsp;
+                        {{end}}
+                    </td>
+                    <td >
+                        <a href="/pages/manager/checkKey.html" >后台管理</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </span>
+
+    <span>
+           {{if .Type}} <!--循环已上映的-->
+                 <table class="rankType">
+                    <tr>
+                       <td id="rankNoneType1">
+                           <a href="/rank?rankType=0" >按评分</a>
+                       </td>
+                        <td id="rankNowType1">按票房</td>
+                    </tr>
+                </table>
+            {{else}}    <!--  正在热映-->
+                <table class="rankType">
+                    <tr>
+                       <td id="rankNowType">按评分</td>
+                       <td id="rankNoneType">
+                           <a href="/rank?rankType=1" >按票房</a>
+                       </td>
+                    </tr>
+                </table>
+            {{end}}
+    </span>
+
+    <br><br><br><br>
+
+    <div id="rank">
+        {{if .Type}} <!--按票房-->
+            {{range .Movie1}}
+                <div >
+                    <table class="rankTab" >
+                        <tr style="margin-left: 100px">
+<!--                            <td rowspan="2" class="rank"><b>1</b></td>-->
+                            <td rowspan="2" >
+                                <div>
+                                    <img class="movie_img" alt="" src="{{.ImgPath}}" style="margin-left: 40px">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rank_info">
+                                    <span style="font-size: 30px">{{.Name}}</span>
+                                    <br><br>
+                                    <span>{{.Type}}</span>
+                                    <br>
+                                    <span>{{.Where}} / {{.Time}}分钟</span>
+                                    <br>
+                                </div>
+                            </td>
+                            <td >
+                                <div class="rank_r" style="color:orange">
+                                    {{if .Score}}
+                                    <span>评分：{{.Score}}分</span>
+                                    {{else}}
+                                    <span>暂无评分</span>
+                                    {{end}}
+                                    <br><br>
+                                    {{if .Amount}}
+                                    <span>票房：{{.Amount}}亿</span>
+                                    {{else}}
+                                    <span>票房：暂无数据</span>
+                                    {{end}}
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/info?movieId={{.ID}}" ><input type="submit" name="buyTicket" value="购      票" class="rank_btn"></a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            {{end}}
+        {{else}}    <!-- 按评分 -->
+            {{range .Movie0}}
+                <div>
+                    <table class="rankTab" >
+                        <tr style="margin-left: 100px">
+<!--                            <td rowspan="2" class="rank"><b>1</b></td>-->
+                            <td rowspan="2" >
+                                <div>
+                                    <img class="movie_img" alt="" src="{{.ImgPath}}" style="margin-left: 40px">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="rank_info">
+                                    <span style="font-size: 30px">{{.Name}}</span>
+                                    <br><br>
+                                    <span>{{.Type}}</span>
+                                    <br>
+                                    <span>{{.Where}} / {{.Time}}分钟</span>
+                                    <br>
+                                </div>
+                            </td>
+                            <td >
+                                <div class="rank_r" style="color:orange">
+                                    {{if .Score}}
+                                    <span>评分：{{.Score}}分</span>
+                                    {{else}}
+                                    <span>暂无评分</span>
+                                    {{end}}
+                                    <br><br>
+                                    {{if .Amount}}
+                                    <span>票房：{{.Amount}}亿</span>
+                                    {{else}}
+                                    <span>票房：暂无数据</span>
+                                    {{end}}
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/info?movieId={{.ID}}" ><input type="submit" name="buyTicket" value="购      票" class="rank_btn"></a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            {{end}}
+        {{end}}
+
+
+    </div>
+
+
+    <br><br><br>
+
+    <div id="bottom">
+            <span>
+                启程电影.Copyright &copy;2023
+            </span>
+    </div>
+    <br><br>
+
+</body>
+</html>

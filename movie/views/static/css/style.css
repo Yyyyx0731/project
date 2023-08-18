@@ -1,0 +1,1240 @@
+@CHARSET "UTF-8";
+
+body {
+    /*overflow: hidden;*/
+    overflow: auto;
+}
+
+* {
+    margin: 0;
+    /*font-family:"Microsoft Yahei";*/
+    /*color: #666;*/
+}
+
+/*div{*/
+/*    !*margin: auto;*!*/
+/*    !*margin-bottom: 10px;*!*/
+/*    !*margin-top: 10px;*!*/
+/*    overflow: auto;*/
+/*}*/
+
+table{
+    text-align: center;
+}
+
+#header {
+
+}
+
+#header table{
+    height: 107px;
+    width: 1120px;
+    margin-top: 0;
+    text-align: center;
+}
+
+#header table a{
+    text-decoration:none;
+}
+#header table a:link {
+    color:black;
+    font-size: 20px;
+}
+#header table a:visited {
+    color:black;
+    font-size: 20px;
+}
+#header table a:hover {
+    color:red;
+    font-size: 20px;
+}
+
+.filmList a{
+    text-decoration:none;
+    color: red;
+}
+.filmList a:visited{
+    text-decoration:none;
+    color: red;
+}
+.filmList a:hover{
+    color:blue;
+}
+
+.filmList1 a{
+    text-decoration:none;
+    color: dodgerblue;
+}
+.filmList1 a:visited{
+    text-decoration:none;
+    color: dodgerblue;
+}
+.filmList1 a:hover{
+    color:indianred;
+}
+
+
+
+
+td {
+    width: auto;
+}
+
+
+
+#now{
+    color: white;
+    background-color: red;
+    font-size: 20px;
+}
+
+/*#box{*/
+/*    width: 1000px;*/
+/*    !*height: 1px;*!*/
+/*    !*margin-top: 0px;*!*/
+/*    !*font-size: 14px;*!*/
+/*}*/
+
+#search{
+    width: 175px;
+    border: 3px solid red;
+    height: 30px;
+    float: left;
+    padding:0 0 0 10px;
+    outline-color:red;
+    /*margin-top: 1px;*/
+}
+#btn{
+   width: 45px;
+    height: 35px;
+    float: left;
+}
+
+/*#right{*/
+/*    float: right;*/
+/*    text-align: right;*/
+/*}*/
+
+#tab{
+    /*float:left;*/
+    table-layout: fixed;
+    width: auto;
+}
+#tab1{
+    /*float:left;*/
+    table-layout: fixed;
+    width: auto;
+}
+
+
+#main {
+    height: 460px;
+    width: 1000px;
+    border: 1px black solid;
+    /*overflow: auto;*/
+}
+/*#main1{*/
+
+/*    border: 1px black solid;*/
+/*    table-layout: fixed;*/
+/*    width: auto;*/
+/*}*/
+
+#ziBig{
+    font-size: 33px;
+    color: red;
+}
+#ziSmall{
+    font-size: 20px;
+    color: red;
+}
+
+#ziBig1{
+    font-size: 33px;
+    color: dodgerblue;
+}
+#ziSmall1{
+    font-size: 20px;
+    color: dodgerblue;
+}
+
+.film{
+    border: darkgrey solid ;
+    margin-left: 60px;
+}
+
+.film1{
+   text-align: right;
+}
+
+.buy {
+    width: 183px;
+
+}
+
+/*.filmList{*/
+/*    width: 500px;*/
+/*}*/
+
+.film1{
+    width: 250px;
+    height: 350px;
+}
+
+.movieName{
+    font-size: 25px;
+    float: left;
+    margin-left: 55px;
+}
+
+
+
+.logo_img{
+    float: left;
+    width: 300px;
+    height: 114px;
+}
+
+.num1{
+    color: orangered;
+    font-size: 25px;
+}
+.num2{
+    color: orangered;
+    font-size: 23px;
+}
+.num3{
+    color: orangered;
+    font-size: 22px;
+}
+.num{
+    color: black;
+}
+.num11{
+    color: royalblue;
+    font-size: 25px;
+}
+.num22{
+    color: royalblue;
+    font-size: 23px;
+}
+.num33{
+    color: royalblue;
+    font-size: 22px;
+}
+
+.wel{
+    font-size: 50px;
+    color: deeppink;
+    position: fixed;
+    top: 50px;
+    right: 150px;
+}
+
+#loginForm{
+    width: 40%;
+    height: 400px;
+    text-align: center;
+    border: lightgrey solid;
+    position: fixed;
+    top: 200px;
+    left: 450px;
+    background-image: url('/static/img/background.jpg');
+}
+
+.titr{
+    float: right;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+.titl{
+    float: left;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.titr{
+    float: right;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-top: 10px;
+}
+
+#msg{
+    margin-top: 20px;
+    height: 40px;
+    width: 100%;
+    background-color: #fff6a2;
+    text-align: left;
+    color: orange;
+    font-size: 23px;
+}
+
+#msg1{
+    /*border: black solid;*/
+    width: 500px;
+    height: 30px;
+    text-align: left;
+    color: red;
+    font-size: 23px;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+
+.itxt{
+    height: 30px;
+    width: 200px;
+}
+
+.sub_btn{
+    width: 80px;
+    height: 40px;
+}
+
+#sub_btn1{
+    width: 80px;
+    height: 40px;
+    /*margin-top: 5px;*/
+}
+
+
+/*.login_box{*/
+/*    !*position: fixed;*!*/
+/*    !*top: 200px;*!*/
+/*    !*left: 600px;*!*/
+/*    !*font-size: 20px;*!*/
+/*    color: deeppink;*/
+/*}*/
+
+/*.head{*/
+/*    width: 100%;*/
+/*    height: 10%;*/
+/*}*/
+
+#registForm{
+    width: 40%;
+    height: 460px;
+    text-align: center;
+    border: lightgrey solid;
+    position: fixed;
+    top: 170px;
+    left: 450px;
+    background-image: url('/static/img/background.jpg');
+}
+
+.type,.rankType{
+    background-color: black;
+    width: 100%;
+    height: 60px;
+    font-size: 25px;
+}
+
+#nowType,#nowType1,#rankNowType,#rankNowType1{
+    color: red;
+}
+
+/*#noneType,#noneType1{*/
+/*    color: grey;*/
+/*}*/
+
+#noneType a:link{
+    text-decoration:none;
+    color: grey;
+}
+#noneType a:visited{
+    text-decoration:none;
+    color: grey;
+}
+
+#noneType a:hover{
+    color:white;
+}
+
+#noneType1 a:link{
+    text-decoration:none;
+    color: grey;
+}
+#noneType1 a:visited{
+    text-decoration:none;
+    color: grey;
+}
+
+#noneType1 a:hover{
+    color:white;
+}
+
+
+#rankNoneType a:link{
+    text-decoration:none;
+    color: grey;
+}
+#rankNoneType a:visited{
+    text-decoration:none;
+    color: grey;
+}
+
+#rankNoneType a:hover{
+    color:white;
+}
+
+#rankNoneType1 a:link{
+    text-decoration:none;
+    color: grey;
+}
+#rankNoneType1 a:visited{
+    text-decoration:none;
+    color: grey;
+}
+
+#rankNoneType1 a:hover{
+    color:white;
+}
+
+
+.title{
+    text-align: center;
+    font-size: 20px;
+}
+
+.score{
+    text-align: center;
+    color: gold;
+    font-size: 25px;
+}
+
+.online{
+    text-align: center;
+    color: coral;
+    font-size: 25px;
+}
+
+
+.movie_img{
+    width: 190px;
+    height: 270px;
+}
+
+.list{
+    /*position: fixed;*/
+    /*top: 250px;*/
+    /*left: 100px;*/
+    /*overflow: auto;*/
+    /*overflow:scroll;*/
+    margin-left: 100px;
+    width: 1300px;
+    /*border: black solid;*/
+
+}
+
+.movie{
+    float: left;
+    margin: 30px;
+}
+
+.page_nav{
+    /*width: 100%;*/
+    margin-left: 500px;
+    /*text-align: center;*/
+    margin-top: 780px;
+    height: 100px;
+}
+
+/*#page{*/
+/*    margin-top: 800px;*/
+/*}*/
+
+
+
+.pn_input{
+    width:30px;
+}
+
+#back{
+    margin-top: 20px;
+    width: 100%;
+    height: 350px;
+    background-image: url('/static/img/background.jpg');
+    /*margin: auto;*/
+    background-repeat: no-repeat;
+}
+
+#info_img{
+    width: 200px;
+    margin-left: 250px;
+    margin-top: 60px;
+}
+
+#info{
+    margin-left: 100px;
+    /*!*margin-top: 70px;*!*/
+    /*float: left;*/
+}
+
+#infoTab{
+    text-align: left;
+    color: white;
+    font-size: 20px;
+}
+
+#goEva a{
+    color: white;
+    font-size: 20px;
+    margin-left: 250px;
+}
+#goEva a:link{
+    /*text-decoration:none;*/
+    color: white;
+}
+#goEva a:visited{
+    /*text-decoration:none;*/
+    color: white;
+}
+
+#goEva a:hover{
+    color:red;
+}
+
+
+#buy_btn{
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    font-size: 23px;
+    margin-left: 100px;
+}
+
+#con{
+    margin-left: 100px;
+    margin-top: 60px;
+    margin-right: 100px;
+}
+
+#r{
+    font-size: 20px;
+    margin-left: 100px;
+    color: white;
+}
+
+#evaForm{
+    width: 300px;
+    height: 200px;
+    margin-left: 600px;
+    border:lightgray solid;
+    /*border: grey;*/
+    /*margin-top: 60px;*/
+    background-color: #fff1ef;
+}
+
+/*#sub_eva{*/
+/*    margin-left: 120px;*/
+/*}*/
+
+#evaScore{
+    height: 30px;
+    margin-top: 50px;
+}
+
+#rank_img{
+    width: 200px;
+    height: 280px;
+    margin-left: 100px;
+}
+
+
+.rank{
+    color: red;
+    font-size: 25px;
+    /*margin-left: 100px;*/
+    width: 70px;
+}
+
+
+
+
+
+.movie_img{
+    text-align: left;
+}
+
+
+.rankTab{
+    text-align: left;
+    margin-left: 180px;
+    color: black;
+    /*border: black solid;*/
+    width: 1100px;
+}
+
+.rank_info{
+    margin-left: 50px;
+}
+.rank_r{
+    margin-left: 60px;
+    font-size: 20px;
+}
+.rank_btn{
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    font-size: 23px;
+    margin-left: 50px;
+    float: right;
+}
+
+.delete_btn1{
+    float: right;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    font-size: 23px;
+    margin-left: 50px;
+}
+
+.delete_btn0{
+    float: right;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    font-size: 23px;
+    margin-left: 50px;
+}
+
+
+#back1{
+    margin-top: 20px;
+    width: 100%;
+    height: 350px;
+    background-image: url('/static/img/background.jpg');
+    /*margin: auto;*/
+    background-repeat: no-repeat;
+}
+
+#infoTab1{
+    text-align: left;
+    color: white;
+    font-size: 20px;
+}
+
+#cinemaList{
+    margin-left: 100px;
+    /*border:lightgray solid;*/
+    width: 1250px;
+}
+
+.cinemaName{
+    font-size: 22px;
+}
+
+.selectCinema_btn{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: red;
+    font-size: 18px;
+    float: right;
+}
+
+.adda{
+    color: grey;
+}
+
+/*#selectDate{*/
+/*    color: red;*/
+/*    !*text-decoration: red underline;*!*/
+/*}*/
+
+.date{
+    float: left;
+    margin: 20px;
+}
+
+#selectDate{
+    font-size: 20px;
+    margin-left: 150px;
+}
+
+#selectDate a:link{
+    /*text-decoration:none;*/
+    color: red;
+}
+#selectDate a:visited{
+    /*text-decoration:none;*/
+    color: red;
+}
+
+#selectDate a:hover{
+    color:royalblue;
+}
+
+
+
+
+
+
+
+#timeList{
+    /*border: solid;*/
+    text-align: center;
+    width: 1200px;
+    margin-left: 150px;
+    margin-top: 100px;
+}
+
+#listTitle{
+    font-size: 20px;
+}
+
+.listHeight{
+    height: 70px;
+    /*table-layout: fixed;*/
+}
+
+
+.price{
+    color: red;
+    font-size: 20px;
+}
+
+.tabCon{
+    width: 20%;
+    float: left;
+    margin-top: 20px;
+}
+
+.time{
+    width: 20%;
+    float: left;
+    margin-top: 15px;
+}
+
+.price{
+    width: 20%;
+    float: left;
+    margin-top: 20px;
+}
+
+.btn{
+    width: 20%;
+    float: left;
+    margin-top: 17px;
+}
+
+.startTime{
+    font-size: 20px;
+}
+
+.endTime{
+    font-size: 10px;
+    color: grey;
+}
+
+.selectSeat_btn{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: red;
+    font-size: 18px;
+    /*float: right;*/
+}
+
+.row{
+    height: 70px;
+}
+
+
+#bottom {
+    /*height: 30px;*/
+    text-align: center;
+    color: darkgrey;
+}
+
+#bottom1{
+    color: darkgrey;
+    position: fixed;
+    top: 700px;
+    left: 650px;
+}
+
+/*.seat{*/
+/*    float: left;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*}*/
+
+#left{
+    width: 1000px;
+    height: 500px;
+    /*text-align: center;*/
+    /*border: red solid;*/
+    /*padding-top: 10px;*/
+}
+#test{
+    border: lightgrey solid;
+    height: 500px;
+    /*text-align: center;*/
+    /*margin-left: 0px;*/
+    /*margin-top: 10px;*/
+}
+
+#screen{
+    width: 200px;
+    height: 40px;
+    /*padding-top: 10px;*/
+    margin-top: 50px;
+    margin-left: 400px;
+    font-size: 22px;
+    background-color: lightgray;
+
+}
+
+#seat{
+    margin-top: 50px;
+    width: 500px;
+    /*border: black solid;*/
+    margin-left: 250px;
+    text-align: center;
+}
+
+#right{
+    width: 400px;
+    height: 500px;
+    float: right;
+    border: lightgrey solid;
+    text-align: left;
+    /*margin-left: 100px;*/
+    background-color: #fff1ef;
+}
+#right div{
+    margin-left: 100px;
+}
+
+/*#seatDiv{*/
+/*    border: black solid;*/
+/*}*/
+
+#title{
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+.info{
+    font-size: 20px;
+    margin: 15px;
+}
+
+#amount{
+    color: red;
+    font-size: 30px;
+}
+
+#pay_btn{
+    margin-top: 30px;
+    width: 200px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    font-size: 23px;
+    /*margin-left: 100px;*/
+}
+
+#goToMyOrder{
+    font-size: 20px;
+    position: fixed;
+    right: 250px;
+}
+
+#crOrderDiv{
+    margin-left: 200px;
+    width: 1000px;
+    height: 500px;
+    border: lightgrey solid;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#orderList{
+    margin-top: 100px;
+    margin-left: 120px;
+    border: lightgrey solid;
+    width: 1200px;
+}
+
+#orderTab{
+    width: 1200px;
+    text-align: center;
+    font-size: 20px;
+}
+
+#orderTit{
+    font-size: 25px;
+}
+
+.tr{
+    height: 70px;
+}
+
+#detailDiv{
+    width: 1000px;
+    margin-top: 10px;
+    margin-left: 200px;
+    font-size: 20px;
+}
+
+#return {
+    font-size: 20px;
+    margin-top: 70px;
+    margin-left: 200px;
+}
+
+.detailTab{
+    width: 1000px;
+    border: lightgrey solid;
+    text-align: left;
+}
+
+.rInfo{
+    margin-left: 50px;
+}
+
+.detail{
+    margin-top: 10px;
+}
+
+.tr1{
+    height: 200px;
+    /*border: lightgrey solid;*/
+}
+
+.info1{
+    border: lightgrey solid;
+}
+
+#manageTit{
+    font-size: 50px;
+    color: deeppink;
+    position: fixed;
+    top: 50px;
+    right: 150px;
+}
+
+#manageForm{
+    width: 40%;
+    height: 400px;
+    text-align: center;
+    border: lightgrey solid;
+    position: fixed;
+    top: 200px;
+    left: 450px;
+    background-image: url('/static/img/background.jpg');
+}
+
+#manageTitle{
+    font-size: 30px;
+    color: deeppink;
+    /*position: fixed;*/
+    /*top: 40px;*/
+    /*right: 50px;*/
+    /*margin-top: 40px;*/
+    margin-right: 50px;
+}
+
+#manageTab{
+    /*table-layout: fixed;*/
+    /*width: auto;*/
+    width: 800px;
+    /*border:yellow solid;*/
+    height: 107px;
+}
+
+#manageHead{
+    float: left;
+    /*border: black solid;*/
+    width: 800px;
+    height: 107px;
+}
+
+#head table a{
+    text-decoration:none;
+}
+#head table a:link {
+    color:black;
+    font-size: 20px;
+}
+#head table a:visited {
+    color:black;
+    font-size: 20px;
+}
+#head table a:hover {
+    color:red;
+    font-size: 20px;
+}
+
+#timeList1{
+    /*border: solid;*/
+    text-align: center;
+    font-size: 20px;
+    width: 1200px;
+    margin-left: 150px;
+    margin-top: 170px;
+}
+
+.listHeight1{
+    height: 120px;
+    /*table-layout: fixed;*/
+}
+
+.tabCon1{
+    width: 20%;
+    float: left;
+    margin-top: 50px;
+}
+
+.price1{
+    color: red;
+    width: 20%;
+    float: left;
+    margin-top: 50px;
+}
+
+#btn1{
+    width: 45px;
+    height: 35px;
+    /*float: left;*/
+}
+
+#btn2{
+    width: 45px;
+    height: 35px;
+    /*float: left;*/
+}
+
+.timeTab{
+    width: 20%;
+    height: 100%;
+}
+
+/*.date{*/
+/*    margin-top: 10px;*/
+/*}*/
+
+/*.time1{*/
+/*    margin-top: 15px;*/
+/*}*/
+
+.modify_btn{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: deepskyblue;
+    font-size: 18px;
+}
+
+.delete_btn{
+    width: 100px;
+    height: 40px;
+    color: white;
+    background-color: forestgreen;
+    font-size: 18px;
+}
+
+.add_btn{
+    margin-top: 80px;
+    margin-right: 150px;
+    float: right;
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: lightpink;
+    font-size: 20px;
+}
+
+#addTime{
+    width: 100%;
+}
+
+#editTime{
+    width: 1050px;
+    margin-top: 100px;
+    margin-left: 210px;
+}
+
+.editTab{
+    /*border: black solid;*/
+    margin-left: 130px;
+    font-size: 25px;
+}
+
+.edit_btn1{
+    margin-left: 70px;
+    width: 200px;
+    height: 30px;
+}
+.edit_btn2{
+    margin-left: 30px;
+    width: 150px;
+    height: 30px;
+}
+.edit_btn3{
+    margin-left: 50px;
+    width: 180px;
+    height: 30px;
+}
+.edit_btn4{
+    margin-left: 50px;
+    width: 100px;
+    height: 30px;
+}
+.edit_btn5{
+    margin-left: 50px;
+    width: 200px;
+    height: 30px;
+}
+
+#editTime_btn{
+    width: 100px;
+    height: 30px;
+    margin-left: 450px;
+    font-size: 20px;
+}
+
+#addMovie_btn{
+    width: 100px;
+    height: 30px;
+    margin-left: 550px;
+    font-size: 20px;
+}
+
+#movieList{
+    margin-top: 100px;
+}
+
+.addMovie_btn{
+    margin-top: 30px;
+    margin-right: 150px;
+    float: right;
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: lightpink;
+    font-size: 20px;
+}
+
+#addMovie{
+    width: 100%;
+}
+
+#editTab1{
+    /*border: black solid;*/
+    margin-left: 50px;
+    font-size: 25px;
+}
+
+.edit_btn11{
+    margin-left: 70px;
+    width: 200px;
+    height: 30px;
+}
+.edit_btn21{
+    margin-left: 30px;
+    width: 110px;
+    height: 30px;
+}
+.edit_btn31{
+    margin-left: 30px;
+    width: 180px;
+    height: 30px;
+}
+.edit_btn41{
+    margin-left: 50px;
+    width: 100px;
+    height: 30px;
+}
+.edit_btn51{
+    margin-left: 100px;
+    width: 200px;
+    height: 30px;
+}
+
+#editTime1{
+    width: 1200px;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+#timeList2{
+    /*border: solid;*/
+    text-align: center;
+    width: 1200px;
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 170px;
+}
+
+.edit_text1{
+    margin-left: 160px;
+    width: 190px;
+    height: 30px;
+}
+.edit_text2{
+    margin-left: 60px;
+    width: 80px;
+    height: 30px;
+}
+.edit_text3{
+    margin-left: 140px;
+    width: 80px;
+    height: 30px;
+}
+.edit_text4{
+    margin-left: 170px;
+    font-size: 20px;
+
+}
+
+#editRoomTit{
+    margin-left: 100px;
+}
+
+.return{
+    font-size: 30px;
+}
+
+/*.top{*/
+/*    font-size: 25px;*/
+/*    margin-top: 100px;*/
+/*}*/
+/*.bottom{*/
+/*    font-size: 25px;*/
+/*    margin-top: 30px;*/
+/*}*/
+
+.wel1{
+    font-size: 50px;
+    color: deeppink;
+    position: fixed;
+    top: 50px;
+    right: 300px;
+}
+
+#registForm1{
+    width: 40%;
+    height: 590px;
+    text-align: center;
+    border: lightgrey solid;
+    position: fixed;
+    top: 170px;
+    left: 450px;
+    background-image: url('/static/img/background.jpg');
+}
+
+
+#searchRes{
+    margin-top: 100px;
+}
+

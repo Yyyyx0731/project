@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>场次信息</title>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css" >
+    <script src="/static/script/jquery-1.7.2.js"></script>
+    <script>
+        $(function (){
+            $("#editTime_btn").click(function (){
+                alert("提交数据成功！")
+            })
+        })
+    </script>
+</head>
+<body>
+
+    <span id="head">
+        <img class="logo_img" alt="" src="/static/img/logo.jpg" >
+
+        <div id="manageHead">
+            <table id="manageTab" >
+                <tr>
+                    <td>
+                        <a href="/manage" >电影管理</a>&nbsp;&nbsp;
+                    </td>
+                    <td id="now">场次管理</td>
+                    <td >
+                        <a href="/manageRoom" >影厅管理</a>&nbsp;&nbsp;
+                    </td>
+                     <td>
+                        <a href="/cinemaLogout" >退出管理</a>&nbsp;&nbsp;
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+         <div id="manageTitle"><br>后台管理</div>
+    </span>
+
+    <div id="editTime" style="border: lightgrey solid">
+        <br>
+        <div style="font-size: 25px;margin-left: 30px"><a href="/manageTime">< 返回</a></div>
+        <br>
+        <div>
+            <form action="/modifyTime" method="POST">
+                <div>
+                    <div>
+                        <span class="editTab">影片名</span>
+<!--                        <span class="editTab">语言版本</span>-->
+                        <span class="editTab">放映时间</span>
+                        <span class="editTab">票价(元)</span>
+                        <span class="editTab">影厅</span>
+                    </div>
+                    <br>
+                    <div>
+                        {{if .}}	<!--修改-->
+                        <input type="hidden" name="timeId" value="{{.TimeID}}">		<!--隐藏域-->
+                        <input name="name" type="text" value="{{.MovieName}}" class="edit_btn1"/>
+                        <input name="time" type="datetime-local" value="{{.DateAndTime}}" class="edit_btn3"/>
+                        <input name="price" type="text" value="{{.Price}}" class="edit_btn4"/>
+                        <input name="room" type="text" value="{{.RoomName}}" class="edit_btn5"/>
+                        {{else}}	<!--添加-->
+                        <input type="hidden" name="timeId" value=""/>	<!--隐藏域-->
+                        <input name="name" type="text" value="" class="edit_btn1"/>
+                        <input name="time" type="datetime-local" value="" class="edit_btn3"/>
+                        <input name="price" type="text" value="" class="edit_btn4"/>
+                        <input name="room" type="text" value="" class="edit_btn5"/>
+                        {{end}}
+                        <br><br><br>
+                        <input type="submit" value="提   交" id="editTime_btn"/>
+                        <br><br>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <br><br><br>
+
+    <div id="bottom">
+        <span>
+            启程电影.Copyright &copy;2023
+        </span>
+    </div>
+    <br><br>
+
+
+</body>
+</html>
