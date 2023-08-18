@@ -8,6 +8,7 @@ type Order struct {
 	Amount int
 	TimeID int
 	OrderItems []*TimeAndSeat
+	Pay int
 }
 
 type Order1 struct {

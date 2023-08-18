@@ -6,10 +6,10 @@ import (
 	"movie/utils"
 )
 
-func UpdateSeatStatus(roomId,row,column int){
+func UpdateSeatStatus(roomId,row,column,status int){
 	sqlStr := "update seats set statues = ? where roomID = ? and seat_row=? and  seat_column=?"
 
-	_, err := utils.Db.Exec(sqlStr, 1,roomId,row,column)
+	_, err := utils.Db.Exec(sqlStr, status,roomId,row,column)
 	if err != nil {
 		fmt.Println("exec err:",err)
 		return

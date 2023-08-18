@@ -22,8 +22,10 @@ func GetMyOrder(userId int)([]*model.Order){
 	for rows.Next() {
 		order := &model.Order{}
 		//读取订单信息
-		rows.Scan(&order.ID,&order.Date,&order.Count,&order.Amount,&order.UserID)
-
+		rows.Scan(&order.ID,&order.Date,&order.Count,&order.Amount,&order.UserID,&order.Pay)
+		if order.ID=="" {
+			continue
+		}
 		//根据某个订单id获取该订单中所有订单项详情
 		sqlStr1 := "select timeID,seat_row,seat_column,price from orderitems where orderID=?"
 		rows1, err := utils.Db.Query(sqlStr1, order.ID)
@@ -134,8 +136,8 @@ func AddOrder(add []string,userId int,timeId int){
 	price := time1.Price
 	count := len(add)
 	amount := price*float64(count)
-	sqlStr := "insert into orders(id, date, count, amount, userID) values(?,?,?,?,?) "
-	_,err:=utils.Db.Exec(sqlStr,orderId,date,count,amount,userId)
+	sqlStr := "insert into orders(id, date, count, amount, userID,pay) values(?,?,?,?,?,?) "
+	_,err:=utils.Db.Exec(sqlStr,orderId,date,count,amount,userId,0)
 	if err!=nil {
 		fmt.Println(err)
 		return
@@ -147,7 +149,7 @@ func AddOrder(add []string,userId int,timeId int){
 		row,_ := strconv.Atoi(r)
 		column,_ := strconv.Atoi(c)
 		AddOrderItems(orderId,timeId,row,column,price)
-		UpdateSeatStatus(time1.RoomID,row,column)
+		UpdateSeatStatus(time1.RoomID,row,column,1)
 	}
 
 }
@@ -186,12 +188,48 @@ func DeleteOrder(orderId string){
 
 //删除订单项
 func DeleteOrderItems(orderId string){
-	sqlStr := `delete from orderitems  where orderID = ?`
+	sql := "select timeID,seat_row,seat_column from orderitems where orderID=?"
+	//执行
+	rows, err := utils.Db.Query(sql, orderId)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	for rows.Next() {
+		timeId := 0
+		row := 0
+		column := 0
+		rows.Scan(&timeId,row,column)
+		roomId := GetRoomIDByTimeID(timeId)
+		UpdateSeatStatus(roomId,row,column,0)
+	}
 
-	_, err := utils.Db.Exec(sqlStr, orderId)
+	sqlStr := `delete from orderitems  where orderID = ?`
+	_, err = utils.Db.Exec(sqlStr, orderId)
 	if err != nil {
 		fmt.Println("delete:", err)
 		return
 	}
+}
+
+func UpdatePay (orderId string){
+	sqlStr := "update orders set pay = ? where id = ? "
+
+	_, err := utils.Db.Exec(sqlStr, 1,orderId)
+	if err != nil {
+		fmt.Println("exec err:",err)
+		return
+	}
+}
+
+func GetOrderPayByOderID(orderId string) int{
+	var pay int
+	sqlStr:="select pay from orders where id =?"
+
+	err:=utils.Db.QueryRow(sqlStr,orderId).Scan(&pay)
+	if err != nil {
+		fmt.Println("query:",err)
+	}
+	return pay
 }
 

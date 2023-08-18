@@ -19,6 +19,17 @@
                 //确认框confirm
                 return confirm("确定要取消该订单吗？");
             });
+            $(".payOrder").click(function(){// . 类选择器
+                //获取书名
+                // var title = $(this).attr("id");//this是class=deleteBook的 a 标签
+                // var flag = confirm("确定要删除【"+title+"】这本图书吗？");
+                // if(!flag){
+                // 	//取消默认行为
+                // 	return false;
+                // }
+                //确认框confirm
+                return confirm("确定要支付该订单吗？");
+            });
         });
     </script>
 </head>
@@ -81,6 +92,13 @@
                 </td>
                 <td>
                     <a href="/deleteOrder?orderId={{.ID}}" class="delOrder" id="{{.ID}}">取消订单</a>
+                </td>
+                <td>
+                    {{if .Pay}}
+                    <span class="delOrder" style="color: grey" >已支付</span>
+                    {{else}}
+                    <a href="/goToPay?orderId={{.ID}}" style="color: red" class="payOrder" id="{{.ID}}">确认支付</a>
+                    {{end}}
                 </td>
             </tr>
             {{end}}

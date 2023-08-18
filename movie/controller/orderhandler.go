@@ -4,11 +4,15 @@ import (
 	"html/template"
 	"movie/dao"
 	"movie/model"
-	"movie/utils"
 	"net/http"
 	"strconv"
 	"strings"
+	//"sync"
+	"time"
 )
+
+
+//var wg sync.WaitGroup
 
 //生成订单
 func CreateOrder(w http.ResponseWriter,r *http.Request)  {
@@ -25,18 +29,45 @@ func CreateOrder(w http.ResponseWriter,r *http.Request)  {
 		str := strings.Split(s, "-")
 		order := dao.CreateOrder(str, session.UserID, timeId)
 
+		//wg.Add(1)
+		// go waitToPay(order.ID)
+		//wg.Wait()
+
 		t := template.Must(template.ParseFiles("views/pages/order/createOrder.html"))
 		t.Execute(w, order)
 	} else{
-		////CreateOrder(w,r)
-		orderId := utils.CreateUUID()
-		order1 := &model.Order1{
-			orderId,
-		}
+		//CreateOrder(w,r)
+		//orderId := utils.CreateUUID()
+		//order1 := &model.Order1{
+		//	orderId,
+		//}
 		t := template.Must(template.ParseFiles("views/pages/order/createOrder.html"))
-		t.Execute(w, order1)
+		t.Execute(w, "")
 	}
 }
+
+
+func waitToPay(orderId string){
+	time.After(time.Minute*5)
+	pay := dao.GetOrderPayByOderID(orderId)
+	if pay==0 {
+		dao.DeleteOrder(orderId)
+	}
+	//wg.Done()
+}
+
+
+////选择支付或稍后支付
+//func UpdatePay(w http.ResponseWriter,r *http.Request){
+//	payStr := r.FormValue("pay")
+//	orderId := r.FormValue("orderId")
+//	pay,_ := strconv.Atoi(payStr)
+//	if pay == 1 {
+//		dao.UpdatePay(orderId)
+//	}
+//	GetMyOrder(w,r)
+//}
+
 
 //我的订单
 func GetMyOrder(w http.ResponseWriter,r *http.Request)  {
@@ -88,4 +119,11 @@ func DeleteOrder(w http.ResponseWriter,r *http.Request)  {
 	GetMyOrder(w,r)
 	//t := template.Must(template.ParseFiles("views/pages/order/getMyOrder.html"))
 	//t.Execute(w,"")
+}
+
+
+func GoToPay(w http.ResponseWriter,r *http.Request)  {
+	orderId := r.FormValue("orderId")
+	dao.UpdatePay(orderId)
+	GetMyOrder(w,r)
 }

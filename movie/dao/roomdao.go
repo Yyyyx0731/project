@@ -77,3 +77,14 @@ func DeleteRoomByRoomId(roomId int){
 		return
 	}
 }
+
+
+func GetRoomIDByTimeID(timeId int)int{
+	var roomId int
+	sqlStr:="select roomID from time where id =?"
+	err:=utils.Db.QueryRow(sqlStr,timeId).Scan(&roomId)
+	if err != nil {
+		fmt.Println("query:",err)
+	}
+	return roomId
+}

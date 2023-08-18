@@ -5,7 +5,12 @@ import (
 	"net/http"
 )
 
+var msg chan string
+
 func main() {
+
+	msg = make(chan string)
+
 	//设置处理静态资源，例如css和js文件
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("views/static"))))
 	//直接去页面，不需要像上面一样要通过模板引擎
@@ -46,8 +51,12 @@ func main() {
 	http.HandleFunc("/getSeatsStatus",controller.GetSeatsStatus)
 	//生成订单
 	http.HandleFunc("/createOrder",controller.CreateOrder)
+	////选择支付或稍后支付
+	//http.HandleFunc("/updatePay",controller.UpdatePay)
 	//我的订单
 	http.HandleFunc("/getMyOrder",controller.GetMyOrder)
+	//去支付
+	http.HandleFunc("/goToPay",controller.GoToPay)
 	//订单详情
 	http.HandleFunc("/orderDetail",controller.OrderDetail)
 	//取消订单

@@ -128,7 +128,7 @@ create table orders(
     userID int not null ,
     foreign key(userID) references users(id)
 );
-
+alter table orders add pay int not null ;
 
 
 
